@@ -18,8 +18,8 @@ app.get('/livros', (req, res) => {
 })
 
 app.get('/livros/:id', (req, res) => {
-    let index = buscaLivro(req.params.id);
-    res.json(livros[index]);
+    let index = buscaLivro(req.params.id)
+    res.json(livros[index])
 })
 
 app.post('/livros', (req, res) => {
@@ -28,9 +28,16 @@ app.post('/livros', (req, res) => {
 })
 
 app.put('/livros/:id', (req, res) => {
-    let index = buscaLivro(req.params.id);
-    livros[index].titulo = req.body.titulo;
+    let index = buscaLivro(req.params.id)
+    livros[index].titulo = req.body.titulo
     res.json(livros);
+})
+
+app.delete('/livros/:id', (req, res) => {
+    let { id } = req.params
+    let index = buscaLivro(id)
+    livros.splice(index)
+    res.send('Livro removido com sucesso!')
 })
 
 function buscaLivro(id) {
